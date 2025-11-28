@@ -21,8 +21,7 @@ services:
       - ./certbot/conf:/etc/letsencrypt
     networks:
       - shared-network
-
+      
 networks:
   shared-network:
-    name: shared-network
-    driver: bridge
+    external: true
