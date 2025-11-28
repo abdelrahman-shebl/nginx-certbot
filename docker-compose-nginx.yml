@@ -1,0 +1,28 @@
+services:
+  nginx:
+    image: nginx:1.28-alpine3.21-otel
+    container_name: shared-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./certbot/www:/var/www/certbot
+      - ./certbot/conf:/etc/letsencrypt
+    restart: unless-stopped
+    networks:
+      - shared-network
+
+  certbot:
+    image: certbot/certbot
+    container_name: shared-certbot
+    volumes:
+      - ./certbot/www:/var/www/certbot
+      - ./certbot/conf:/etc/letsencrypt
+    networks:
+      - shared-network
+
+networks:
+  shared-network:
+    name: shared-network
+    driver: bridge
