@@ -53,7 +53,7 @@ docker compose -f docker-compose-nginx.yml run --rm certbot \
   --email sheblabdo00@gmail.com \
   --agree-tos \
   --no-eff-email \
-  -d dashboard.karofa
+  -d dashboard.karofa.com
 
 # Get certificate for api.karofa.com
 echo "Getting certificate for api.karofa.com..."
